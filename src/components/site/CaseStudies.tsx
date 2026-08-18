@@ -92,7 +92,7 @@ export function CaseStudies() {
                     src={logoByName[cs.client]}
                     alt={cs.client}
                     loading="lazy"
-                    className="h-7 w-auto max-w-[120px] object-contain"
+                    className="h-7 w-auto max-w-[120px] object-contain brightness-0 opacity-80"
                   />
                   <span className="rounded-full bg-light-foreground/6 px-3 py-1 text-[11px] font-medium text-light-muted">
                     {cs.industry}

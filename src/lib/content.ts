@@ -76,7 +76,10 @@ export type CaseStudy = {
   summary: string;
   metrics: Array<{ value: string; label: string }>;
   stack: string[];
-  image?: string;
+  image: string;
+  challenge: string[];
+  approach: string[];
+  results: string[];
 };
 
 export const caseStudies: CaseStudy[] = [
@@ -86,13 +89,28 @@ export const caseStudies: CaseStudy[] = [
     industry: "Home Services & Construction",
     title: "Salesforce platform for a national home services network",
     summary:
-      "We extended the internal engineering team with senior Apex and LWC developers to unify lead intake, scheduling and field operations across multiple brands.",
+      "Senior Apex and LWC engineers embedded into the internal team to unify lead intake, scheduling and field operations across multiple brands.",
     metrics: [
       { value: "6", label: "Senior engineers embedded" },
       { value: "40%", label: "Faster release cycles" },
     ],
     stack: ["Apex", "LWC", "Salesforce APIs", "CI/CD"],
     image: caseRenuity,
+    challenge: [
+      "Multiple acquired brands ran disconnected lead intake and scheduling processes on top of a single Salesforce org.",
+      "Customizations had grown organically: untested triggers, duplicated logic and release cycles measured in weeks.",
+    ],
+    approach: [
+      "Embedded six senior engineers into the existing squads, working U.S. hours inside the client's rituals and code review process.",
+      "Refactored triggers into a bulkified, testable Apex service layer with selectors centralizing SOQL.",
+      "Rebuilt operational screens as Lightning Web Components reading from narrow, purpose-built endpoints.",
+      "Introduced CI/CD with automated Apex test runs on every pull request.",
+    ],
+    results: [
+      "Unified lead intake and scheduling across all brands in a single operating model.",
+      "Release cycles 40% faster with a repeatable, automated deployment pipeline.",
+      "Regression incidents down sharply thanks to enforced test coverage on the service layer.",
+    ],
   },
   {
     slug: "agione",
@@ -100,46 +118,43 @@ export const caseStudies: CaseStudy[] = [
     industry: "Logistics & Operations",
     title: "Operations platform rebuilt for scale",
     summary:
-      "An API-first operations platform with real-time tracking dashboards, delivered by a nearshore team working in U.S. time zones alongside the product organization.",
+      "An API-first operations platform with real-time tracking dashboards, delivered by a nearshore team working alongside the product organization.",
     metrics: [
       { value: "3x", label: "Throughput per shift" },
       { value: "12 wks", label: "To first production release" },
     ],
     stack: ["React", "Python", "PostgreSQL", "AWS"],
     image: caseAgione,
-  },
-  {
-    slug: "nutresa",
-    client: "Nutresa",
-    industry: "Enterprise Platforms",
-    title: "Modernizing core operations services",
-    summary:
-      "Progressive refactoring toward service-oriented architecture with Clean Architecture boundaries, automated testing and secure authorization models.",
-    metrics: [
-      { value: "99.9%", label: "Service availability" },
-      { value: "-35%", label: "Technical debt backlog" },
+    challenge: [
+      "Operations ran on spreadsheets and a legacy tool that could not express real-time state across warehouses.",
+      "Every new client onboarding required manual configuration and days of coordination.",
     ],
-    stack: ["Java", "Node.js", "DDD", "Automated testing"],
+    approach: [
+      "Ran a focused discovery to model the domain before writing code, then built API-first with clear service boundaries.",
+      "Delivered real-time tracking dashboards in React backed by a Python service layer on PostgreSQL.",
+      "Automated infrastructure on AWS with observability and alerting from the first release.",
+    ],
+    results: [
+      "First production release in 12 weeks, with weekly increments after that.",
+      "3x throughput per shift as manual coordination steps were removed.",
+      "New client onboarding reduced from days to a self-service configuration flow.",
+    ],
   },
 ];
 
 export type Post = {
   slug: string;
-  tag: string;
-  date: string;
-  readTime: string;
   title: string;
   excerpt: string;
   image: string;
+  date: string;
   body: string[];
 };
 
 export const posts: Post[] = [
   {
     slug: "staff-augmentation-vs-outsourcing",
-    tag: "Staff Augmentation",
     date: "Aug 4, 2026",
-    readTime: "6 min read",
     title: "Staff augmentation vs. outsourcing: what actually scales delivery",
     excerpt:
       "Adding people rarely fixes velocity. What does: embedding senior engineers inside your existing rituals, ownership model and codebase from day one.",
@@ -152,9 +167,7 @@ export const posts: Post[] = [
   },
   {
     slug: "apex-at-enterprise-scale",
-    tag: "Salesforce",
     date: "Jul 22, 2026",
-    readTime: "8 min read",
     title: "Apex at enterprise scale: patterns that survive governor limits",
     excerpt:
       "Bulkified triggers, a service layer around Apex, and LWC boundaries that keep enterprise Salesforce implementations testable and cheap to change.",
@@ -167,9 +180,7 @@ export const posts: Post[] = [
   },
   {
     slug: "modernizing-a-monolith",
-    tag: "Architecture",
     date: "Jul 9, 2026",
-    readTime: "7 min read",
     title: "Modernizing a monolith without freezing the roadmap",
     excerpt:
       "A strangler-fig approach with Clean Architecture boundaries, CI/CD safety nets and automated testing lets you refactor while shipping features.",
@@ -204,4 +215,63 @@ export const testimonials = [
     role: "Head of Product",
     company: "AgiOne",
   },
+];
+
+export const capabilities = [
+  {
+    title: "Software Engineering",
+    items: [
+      "Backend development (Node.js, Python, Java, .NET)",
+      "Frontend development (React, Vue, Angular)",
+      "API-first and service-oriented architectures",
+      "Monolith modernization and system refactoring",
+    ],
+  },
+  {
+    title: "Salesforce & Apex Engineering",
+    items: [
+      "Advanced Apex development",
+      "Lightning Web Components (LWC)",
+      "Custom objects, workflows, triggers and integrations",
+      "Enterprise-grade Salesforce architectures",
+    ],
+  },
+  {
+    title: "Architecture & Scalability",
+    items: [
+      "Clean Architecture and Domain-Driven Design (DDD)",
+      "High-availability and fault-tolerant systems",
+      "Performance optimization and technical debt reduction",
+      "Secure authentication and authorization models",
+    ],
+  },
+  {
+    title: "Quality & Delivery",
+    items: [
+      "Code reviews and technical leadership",
+      "CI/CD pipelines",
+      "Automated testing strategies",
+      "Documentation and knowledge transfer",
+    ],
+  },
+];
+
+export const industries = [
+  "Home Services & Construction",
+  "Enterprise Platforms (Salesforce-based systems)",
+  "Logistics & Operations",
+  "Technology-driven businesses",
+];
+
+export const howWeWork = [
+  "Teams aligned to U.S. business hours",
+  "Clear communication and accountability",
+  "Flexible scaling as your needs grow",
+];
+
+export const whyUs = [
+  "Senior-first mindset",
+  "Strong technical leadership",
+  "Proven experience with enterprise U.S. clients",
+  "Nearshore efficiency without compromising quality",
 ];

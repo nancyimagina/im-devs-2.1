@@ -9,6 +9,10 @@ export const SHAPE_PATHS: Record<string, string[]> = {
     "M3 3 2 14l6.5 6.5a1 1 0 1 0 3-3",
     "M3 4h8",
   ],
+  gear: [
+    "M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z",
+    "M12 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6z",
+  ],
   cloud: ["M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z"],
 };
 
@@ -180,7 +184,7 @@ export function ParticleShape({ shape }: { shape: keyof typeof SHAPE_PATHS }) {
         const ry = p.y * cosX - rz * sinX;
         const rz2 = p.y * sinX + rz * cosX;
 
-        const persp = fov / (fov + rz2 * 2.2);
+        const persp = Math.max(0.15, fov / (fov + rz2 * 2.2));
         let sx = cx + rx * box * persp;
         let sy = cy + ry * box * persp;
 
@@ -200,7 +204,7 @@ export function ParticleShape({ shape }: { shape: keyof typeof SHAPE_PATHS }) {
         ctx.globalAlpha = 0.18 + Math.max(0, Math.min(1, depth)) * 0.7;
         ctx.fillStyle = p.hueShift > 0.55 ? brand : soft;
         ctx.beginPath();
-        ctx.arc(sx, sy, p.size * persp, 0, Math.PI * 2);
+        ctx.arc(sx, sy, Math.max(0.2, p.size * persp), 0, Math.PI * 2);
         ctx.fill();
       }
       ctx.globalAlpha = 1;
